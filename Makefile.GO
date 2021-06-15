@@ -11,7 +11,7 @@ go-build:
 
 go-test:
 	@echo "Running all ${GOSERVICE} tests.."
-	SERVICE_ENV=test GOPROXY=${GOPROXY} go test -cover -v -race ./... -args -config-path=${CURDIR}/resources/config
+	SERVICE_ENV=test GOPROXY=${GOPROXY} go test -cover -v -race ./...
 
 go-run:
 	SERVICE_ENV=development GOPROXY=${GOPROXY} SERVICE_LOG=debug go run *.go

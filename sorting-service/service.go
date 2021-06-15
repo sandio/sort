@@ -22,9 +22,9 @@ type sortingService struct {
 }
 
 func (s *sortingService) LoadItems(ctx context.Context, in *gen.LoadItemsRequest) (*gen.LoadItemsResponse, error) {
-	log.Printf("Received: %v", in.Items)
+	//log.Printf("Received: %v", in.Items)
 	s.items = append(s.items, in.Items...)
-	log.Printf("Stored: %v", s.items)
+	//log.Printf("Stored: %v", s.items)
 
 	return &gen.LoadItemsResponse{}, nil
 }
