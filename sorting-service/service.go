@@ -22,11 +22,12 @@ type sortingService struct {
 }
 
 func (s *sortingService) LoadItems(ctx context.Context, in *gen.LoadItemsRequest) (*gen.LoadItemsResponse, error) {
-	//log.Printf("Received: %v", in.Items)
+	log.Printf("Received: %v", in.Items)
 	s.items = append(s.items, in.Items...)
-	//log.Printf("Stored: %v", s.items)
+	log.Printf("Stored: %v", s.items)
 
 	return &gen.LoadItemsResponse{}, nil
+
 }
 
 func (s *sortingService) SelectItem(context.Context, *gen.SelectItemRequest) (*gen.SelectItemResponse, error) {
@@ -59,4 +60,26 @@ func (s *sortingService) MoveItem(ctx context.Context, in *gen.MoveItemRequest) 
 	log.Printf("Cubbies: %v", s.cubbies)
 	s.selection = nil
 	return &gen.MoveItemResponse{}, nil
+}
+
+func (s *sortingService) RemoveItemsByCode(ctx context.Context, in *gen.RemoveItemsRequest) (*gen.RemoveItemsResponse, error) {
+	log.Printf("Removing [%d] items from all items", len(in.ItemCodes))
+	removed := 0
+	for _, code := range in.ItemCodes {
+		for idx, item := range s.items {
+			if item.Code == code {
+				s.items = append(s.items[:idx], s.items[idx+1:]...)
+				removed++
+				break
+			}
+		}
+	}
+
+	log.Printf("Removed [%d] items while skipping [%d]", removed, len(in.ItemCodes)-removed)
+
+	return &gen.RemoveItemsResponse{}, nil
+}
+
+func (s *sortingService) AuditState(context.Context, *gen.AuditStateRequest) (*gen.AuditStateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoadOrders not implemented")
 }

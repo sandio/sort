@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package fulfillment;
+option go_package = "github.com/sandio/sort/gen";
+
+import "types.proto";
+
+service Fulfillment {
+    // Sync implementation
+    rpc LoadOrders (LoadOrdersRequest) returns (LoadOrdersResponse);
+    rpc GetOrderStatusById(OrderIdRequest) returns (OrdersStatusResponse);
+    rpc GetAllOrdersStatus(types.Empty) returns (OrdersStatusResponse);
+    rpc MarkFullfilled(OrderIdRequest) returns (types.Empty);
+}
+
+message LoadOrdersRequest {
+    repeated types.Order orders = 1;
+}
+
+message LoadOrdersResponse {
+    repeated types.PreparedOrder preparedOrders = 1;
+}
+
+message OrderIdRequest {
+    string orderId = 1;
+}
+
+message OrdersStatusResponse {
+    repeated types.FulfillmentStatus status = 1;
+}

@@ -1,13 +1,16 @@
 syntax = "proto3";
 
+package sorting;
 option go_package = "github.com/sandio/sort/gen";
 
 import "types.proto";
 
 service SortingRobot {
-  rpc LoadItems (LoadItemsRequest) returns (LoadItemsResponse) {}
-  rpc MoveItem (MoveItemRequest) returns (MoveItemResponse) {}
-  rpc SelectItem (SelectItemRequest) returns (SelectItemResponse) {}
+    rpc LoadItems (LoadItemsRequest) returns (LoadItemsResponse) {}
+    rpc SelectItem (SelectItemRequest) returns (SelectItemResponse) {}
+    rpc MoveItem (MoveItemRequest) returns (MoveItemResponse) {}
+    rpc RemoveItemsByCode(RemoveItemsRequest) returns (RemoveItemsResponse);
+    rpc AuditState (AuditStateRequest) returns (AuditStateResponse) {}
 }
 
 message LoadItemsRequest {
@@ -15,14 +18,22 @@ message LoadItemsRequest {
 }
 message LoadItemsResponse {}
 
+message SelectItemRequest {}
+message SelectItemResponse {
+    types.Item item = 1;
+}
+
 message MoveItemRequest {
-  types.Cubby cubby = 1;
+    types.Cubby cubby = 1;
 }
 message MoveItemResponse {}
 
-message SelectItemRequest {}
-message SelectItemResponse {
-  types.Item item = 1;
+message RemoveItemsRequest {
+    repeated string itemCodes = 1;
 }
+message RemoveItemsResponse {}
 
-
+message AuditStateRequest {}
+message AuditStateResponse {
+    repeated types.CubbyItems cubbyItems = 1;
+}

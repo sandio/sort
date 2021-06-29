@@ -1,28 +1,32 @@
-# sort-system-v1
+# sort
 
-This is the first version of the [SORT system](https://www.youtube.com/watch?v=BQDliV7w7_8) we'll be building in the course.
+This is an educational version of the [SORT system](https://www.youtube.com/watch?v=BQDliV7w7_8) we'll be building in the course.
 
 ## How to run the project
  * `make grpc-compile` to generate all grpc-related files in the `gen/` folder
  * Enter `sorting-service` and type `go run *.go`
+ * Enter `fulfillment-service` and type `go run *.go`
 
 ## (Optional) Name your project the way you like
- * Modify the following files and change the repository reference from `github.com/bbsbb/go-at-ocado/sort-vX` to your own repo:
+ * Modify the following files and change the repository reference from `github.com/bbsbb/go-at-ocado/...` to your own repo:
    * `go.mod`
    * `Makefile.GRPC`
-   * all files in the `idl` directory
+   * all files in the `idl` directory 
    * `sorting-service/go.mod`, `sorting-service/main.go`, `sorting-service/service.go`
+   * `fulfillment-service/go.mod`, `sorting-service/main.go`, `sorting-service/service.go`
 
 ## Assignment
-In this part of the project, we'll be building the initial version of the sorting service.
+In this part of the project, we'll be building the initial version of the fulfillment service which controls the sorting robot.
+The responsibility of the service is to receive a set of items, which are associated to orders and dispatch operations to the robot in order to sort the items in appropriate cubbies for the orders.
 
-Implement the following:
- * LoadItems - loads an input array of items in the service. E.g. ["tomatoes", "cucumber", "potato", "cheese"]
- * SelectItem -> Choose an item at random from the remaining ones in the array. E.g. choose "tomatoes" at random && remove item from existing array
- * MoveItem -> Move the selected item in the input cubby. Simply return "Success" here.
+ * Implement the Fulfillment/LoadOrders rpc routine. It accepts a list of `Order`s and returns a `list of order to cubby mappings`
+ * Don't just return the correct mapping, control the robot so that the items are **actually placed in the correct cubby**
 
-Return an error in any of the following cases:
- [X] SelectItem is invokes but there are no items in input bin
- [X] MoveItem is invoked but no item is selected yet
- [X] SelectItem is invoked when an item is already selected
+**Implementation details:**
+ * The total number of cubbies is always `10` for this part of the project
+ * Cubby IDs are in the range [1..10]
+ * All items of a given order should be associated to the same `cubby`
+   * To determine the cubby for a given order, use the [ordertocubby library](https://github.com/preslavmihaylov/ordertocubby)
+   * In case of collisions, e.g. two orders are mapped to cubby `5`, remap the second one using the same library.
 
+To test your implementation, use the `./scripts/seed-orders.sh` script.

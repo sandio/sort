@@ -20,6 +20,93 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type OrderState int32
+
+const (
+	OrderState_PENDING OrderState = 0
+	OrderState_READY   OrderState = 1
+	OrderState_FAILED  OrderState = 2
+)
+
+// Enum value maps for OrderState.
+var (
+	OrderState_name = map[int32]string{
+		0: "PENDING",
+		1: "READY",
+		2: "FAILED",
+	}
+	OrderState_value = map[string]int32{
+		"PENDING": 0,
+		"READY":   1,
+		"FAILED":  2,
+	}
+)
+
+func (x OrderState) Enum() *OrderState {
+	p := new(OrderState)
+	*p = x
+	return p
+}
+
+func (x OrderState) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (OrderState) Descriptor() protoreflect.EnumDescriptor {
+	return file_types_proto_enumTypes[0].Descriptor()
+}
+
+func (OrderState) Type() protoreflect.EnumType {
+	return &file_types_proto_enumTypes[0]
+}
+
+func (x OrderState) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use OrderState.Descriptor instead.
+func (OrderState) EnumDescriptor() ([]byte, []int) {
+	return file_types_proto_rawDescGZIP(), []int{0}
+}
+
+type Empty struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Empty) Reset() {
+	*x = Empty{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_types_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Empty) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Empty) ProtoMessage() {}
+
+func (x *Empty) ProtoReflect() protoreflect.Message {
+	mi := &file_types_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
+func (*Empty) Descriptor() ([]byte, []int) {
+	return file_types_proto_rawDescGZIP(), []int{0}
+}
+
 type Item struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -32,7 +119,7 @@ type Item struct {
 func (x *Item) Reset() {
 	*x = Item{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_types_proto_msgTypes[0]
+		mi := &file_types_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -45,7 +132,7 @@ func (x *Item) String() string {
 func (*Item) ProtoMessage() {}
 
 func (x *Item) ProtoReflect() protoreflect.Message {
-	mi := &file_types_proto_msgTypes[0]
+	mi := &file_types_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +145,7 @@ func (x *Item) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Item.ProtoReflect.Descriptor instead.
 func (*Item) Descriptor() ([]byte, []int) {
-	return file_types_proto_rawDescGZIP(), []int{0}
+	return file_types_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Item) GetCode() string {
@@ -87,7 +174,7 @@ type Order struct {
 func (x *Order) Reset() {
 	*x = Order{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_types_proto_msgTypes[1]
+		mi := &file_types_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -100,7 +187,7 @@ func (x *Order) String() string {
 func (*Order) ProtoMessage() {}
 
 func (x *Order) ProtoReflect() protoreflect.Message {
-	mi := &file_types_proto_msgTypes[1]
+	mi := &file_types_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113,7 +200,7 @@ func (x *Order) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Order.ProtoReflect.Descriptor instead.
 func (*Order) Descriptor() ([]byte, []int) {
-	return file_types_proto_rawDescGZIP(), []int{1}
+	return file_types_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Order) GetId() string {
@@ -141,7 +228,7 @@ type Cubby struct {
 func (x *Cubby) Reset() {
 	*x = Cubby{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_types_proto_msgTypes[2]
+		mi := &file_types_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -154,7 +241,7 @@ func (x *Cubby) String() string {
 func (*Cubby) ProtoMessage() {}
 
 func (x *Cubby) ProtoReflect() protoreflect.Message {
-	mi := &file_types_proto_msgTypes[2]
+	mi := &file_types_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -167,7 +254,7 @@ func (x *Cubby) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cubby.ProtoReflect.Descriptor instead.
 func (*Cubby) Descriptor() ([]byte, []int) {
-	return file_types_proto_rawDescGZIP(), []int{2}
+	return file_types_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Cubby) GetId() string {
@@ -177,19 +264,215 @@ func (x *Cubby) GetId() string {
 	return ""
 }
 
+type CubbyItems struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Cubby *Cubby  `protobuf:"bytes,1,opt,name=cubby,proto3" json:"cubby,omitempty"`
+	Items []*Item `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+}
+
+func (x *CubbyItems) Reset() {
+	*x = CubbyItems{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_types_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CubbyItems) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CubbyItems) ProtoMessage() {}
+
+func (x *CubbyItems) ProtoReflect() protoreflect.Message {
+	mi := &file_types_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CubbyItems.ProtoReflect.Descriptor instead.
+func (*CubbyItems) Descriptor() ([]byte, []int) {
+	return file_types_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CubbyItems) GetCubby() *Cubby {
+	if x != nil {
+		return x.Cubby
+	}
+	return nil
+}
+
+func (x *CubbyItems) GetItems() []*Item {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type PreparedOrder struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Order *Order `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
+	Cubby *Cubby `protobuf:"bytes,2,opt,name=cubby,proto3" json:"cubby,omitempty"`
+}
+
+func (x *PreparedOrder) Reset() {
+	*x = PreparedOrder{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_types_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PreparedOrder) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PreparedOrder) ProtoMessage() {}
+
+func (x *PreparedOrder) ProtoReflect() protoreflect.Message {
+	mi := &file_types_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PreparedOrder.ProtoReflect.Descriptor instead.
+func (*PreparedOrder) Descriptor() ([]byte, []int) {
+	return file_types_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *PreparedOrder) GetOrder() *Order {
+	if x != nil {
+		return x.Order
+	}
+	return nil
+}
+
+func (x *PreparedOrder) GetCubby() *Cubby {
+	if x != nil {
+		return x.Cubby
+	}
+	return nil
+}
+
+type FulfillmentStatus struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Cubby *Cubby     `protobuf:"bytes,1,opt,name=cubby,proto3" json:"cubby,omitempty"`
+	Order *Order     `protobuf:"bytes,2,opt,name=order,proto3" json:"order,omitempty"`
+	State OrderState `protobuf:"varint,3,opt,name=state,proto3,enum=types.OrderState" json:"state,omitempty"`
+}
+
+func (x *FulfillmentStatus) Reset() {
+	*x = FulfillmentStatus{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_types_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FulfillmentStatus) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FulfillmentStatus) ProtoMessage() {}
+
+func (x *FulfillmentStatus) ProtoReflect() protoreflect.Message {
+	mi := &file_types_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FulfillmentStatus.ProtoReflect.Descriptor instead.
+func (*FulfillmentStatus) Descriptor() ([]byte, []int) {
+	return file_types_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *FulfillmentStatus) GetCubby() *Cubby {
+	if x != nil {
+		return x.Cubby
+	}
+	return nil
+}
+
+func (x *FulfillmentStatus) GetOrder() *Order {
+	if x != nil {
+		return x.Order
+	}
+	return nil
+}
+
+func (x *FulfillmentStatus) GetState() OrderState {
+	if x != nil {
+		return x.State
+	}
+	return OrderState_PENDING
+}
+
 var File_types_proto protoreflect.FileDescriptor
 
 var file_types_proto_rawDesc = []byte{
 	0x0a, 0x0b, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x74,
-	0x79, 0x70, 0x65, 0x73, 0x22, 0x30, 0x0a, 0x04, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x12, 0x0a, 0x04,
-	0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65,
-	0x12, 0x14, 0x0a, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x22, 0x3a, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12,
-	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12,
-	0x21, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0b,
-	0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65,
-	0x6d, 0x73, 0x22, 0x17, 0x0a, 0x05, 0x43, 0x75, 0x62, 0x62, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x42, 0x1c, 0x5a, 0x1a, 0x67,
+	0x79, 0x70, 0x65, 0x73, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x30, 0x0a,
+	0x04, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x61, 0x62,
+	0x65, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x22,
+	0x3a, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x21, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d,
+	0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e,
+	0x49, 0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x17, 0x0a, 0x05, 0x43,
+	0x75, 0x62, 0x62, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x02, 0x69, 0x64, 0x22, 0x53, 0x0a, 0x0a, 0x43, 0x75, 0x62, 0x62, 0x79, 0x49, 0x74, 0x65,
+	0x6d, 0x73, 0x12, 0x22, 0x0a, 0x05, 0x63, 0x75, 0x62, 0x62, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x0c, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x43, 0x75, 0x62, 0x62, 0x79, 0x52,
+	0x05, 0x63, 0x75, 0x62, 0x62, 0x79, 0x12, 0x21, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18,
+	0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x49, 0x74,
+	0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x57, 0x0a, 0x0d, 0x50, 0x72, 0x65,
+	0x70, 0x61, 0x72, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x22, 0x0a, 0x05, 0x6f, 0x72,
+	0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x22,
+	0x0a, 0x05, 0x63, 0x75, 0x62, 0x62, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e,
+	0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x43, 0x75, 0x62, 0x62, 0x79, 0x52, 0x05, 0x63, 0x75, 0x62,
+	0x62, 0x79, 0x22, 0x84, 0x01, 0x0a, 0x11, 0x46, 0x75, 0x6c, 0x66, 0x69, 0x6c, 0x6c, 0x6d, 0x65,
+	0x6e, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x22, 0x0a, 0x05, 0x63, 0x75, 0x62, 0x62,
+	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e,
+	0x43, 0x75, 0x62, 0x62, 0x79, 0x52, 0x05, 0x63, 0x75, 0x62, 0x62, 0x79, 0x12, 0x22, 0x0a, 0x05,
+	0x6f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x74, 0x79,
+	0x70, 0x65, 0x73, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72,
+	0x12, 0x27, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32,
+	0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x53, 0x74, 0x61,
+	0x74, 0x65, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x2a, 0x30, 0x0a, 0x0a, 0x4f, 0x72, 0x64,
+	0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x0b, 0x0a, 0x07, 0x50, 0x45, 0x4e, 0x44, 0x49,
+	0x4e, 0x47, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x52, 0x45, 0x41, 0x44, 0x59, 0x10, 0x01, 0x12,
+	0x0a, 0x0a, 0x06, 0x46, 0x41, 0x49, 0x4c, 0x45, 0x44, 0x10, 0x02, 0x42, 0x1c, 0x5a, 0x1a, 0x67,
 	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x61, 0x6e, 0x64, 0x69, 0x6f,
 	0x2f, 0x73, 0x6f, 0x72, 0x74, 0x2f, 0x67, 0x65, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x33,
@@ -207,19 +490,32 @@ func file_types_proto_rawDescGZIP() []byte {
 	return file_types_proto_rawDescData
 }
 
-var file_types_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_types_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_types_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_types_proto_goTypes = []interface{}{
-	(*Item)(nil),  // 0: types.Item
-	(*Order)(nil), // 1: types.Order
-	(*Cubby)(nil), // 2: types.Cubby
+	(OrderState)(0),           // 0: types.OrderState
+	(*Empty)(nil),             // 1: types.Empty
+	(*Item)(nil),              // 2: types.Item
+	(*Order)(nil),             // 3: types.Order
+	(*Cubby)(nil),             // 4: types.Cubby
+	(*CubbyItems)(nil),        // 5: types.CubbyItems
+	(*PreparedOrder)(nil),     // 6: types.PreparedOrder
+	(*FulfillmentStatus)(nil), // 7: types.FulfillmentStatus
 }
 var file_types_proto_depIdxs = []int32{
-	0, // 0: types.Order.items:type_name -> types.Item
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 0: types.Order.items:type_name -> types.Item
+	4, // 1: types.CubbyItems.cubby:type_name -> types.Cubby
+	2, // 2: types.CubbyItems.items:type_name -> types.Item
+	3, // 3: types.PreparedOrder.order:type_name -> types.Order
+	4, // 4: types.PreparedOrder.cubby:type_name -> types.Cubby
+	4, // 5: types.FulfillmentStatus.cubby:type_name -> types.Cubby
+	3, // 6: types.FulfillmentStatus.order:type_name -> types.Order
+	0, // 7: types.FulfillmentStatus.state:type_name -> types.OrderState
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_types_proto_init() }
@@ -229,7 +525,7 @@ func file_types_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_types_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Item); i {
+			switch v := v.(*Empty); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -241,7 +537,7 @@ func file_types_proto_init() {
 			}
 		}
 		file_types_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Order); i {
+			switch v := v.(*Item); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -253,7 +549,55 @@ func file_types_proto_init() {
 			}
 		}
 		file_types_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Order); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_types_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Cubby); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_types_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CubbyItems); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_types_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PreparedOrder); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_types_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FulfillmentStatus); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -270,13 +614,14 @@ func file_types_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_types_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   3,
+			NumEnums:      1,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_types_proto_goTypes,
 		DependencyIndexes: file_types_proto_depIdxs,
+		EnumInfos:         file_types_proto_enumTypes,
 		MessageInfos:      file_types_proto_msgTypes,
 	}.Build()
 	File_types_proto = out.File

@@ -3,6 +3,14 @@ syntax = "proto3";
 package types;
 option go_package = "github.com/sandio/sort/gen";
 
+enum OrderState {
+    PENDING = 0;
+    READY = 1;
+    FAILED = 2;
+}
+
+message Empty {}
+
 message Item {
     string code = 1;
     string label = 2;
@@ -15,4 +23,20 @@ message Order {
 
 message Cubby {
     string id = 1;
+}
+
+message CubbyItems {
+    Cubby cubby = 1;
+    repeated Item items = 2;
+}
+
+message PreparedOrder {
+    Order order = 1;
+    Cubby cubby = 2;
+}
+
+message FulfillmentStatus {
+    Cubby cubby = 1;
+    Order order = 2;
+    OrderState state = 3;
 }
